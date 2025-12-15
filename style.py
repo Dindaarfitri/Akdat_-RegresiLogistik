@@ -3,65 +3,52 @@ import streamlit as st
 def add_custom_css():
     """
     Menyuntikkan (inject) CSS kustom ke dalam aplikasi Streamlit.
-    Tema: Cream & Gold Modern (IPK vs Ekonomi)
+    Tema: Deep Maroon & Gold (Royal Elegance)
+    Peningkatan: Enhanced contrast, softer shadows, subtle hover animations.
     """
     st.markdown(
         """
         <style>
-        /* Import Google Fonts */
+        /* Import Google Fonts - Poppins tetap yang terbaik */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
         
-        /* ===== COLOR PALETTE =====
-            Primary Background: #FEF9E7 (Light Cream - Hampir Putih)
-            Sidebar: #FAF0CA (Soft Cream/Khaki)
-            Accent 1: #F4D35E (Golden Yellow/Gold)
-            Accent 2: #EE964B (Orange/Copper)
-            Text Dark: #2C3E50 (Dark Blue/Charcoal - untuk kontras)
-            Text Light: #ffffff
-        ========================== */
+        /* ===== COLOR PALETTE (Nuansa Merah Tua (Maroon) & Emas - Royal Elegance) ===== */
+        :root {
+            --bg-light-cream: #FFF5F7; /* Lightest Off-White/Pinkish Cream */
+            --sidebar-cream: #A34057; /* Medium Deep Rose/Maroon Muda */
+            --accent-gold: #800020; /* Deep Rich Maroon/Merah Tua Utama */
+            --accent-orange: #C11B17; /* Bright Crimson/Merah yang lebih cerah/kontras */
+            --text-dark: #200008; /* Very Dark Maroon/Hampir Hitam */
+            --text-light: #ffffff;
+            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.15); /* Shadow lebih dalam tapi lembut */
+        }
         
         /* Global Styles */
         * {
             font-family: 'Poppins', sans-serif;
-            color: var(--text-dark); /* Default text color */
+            color: var(--text-dark); 
         }
         
-        /* Root Variables */
-        :root {
-            --bg-light-cream: #FEF9E7; /* Latar Belakang Utama */
-            --sidebar-cream: #FAF0CA; /* Sidebar */
-            --accent-gold: #F4D35E;
-            --accent-orange: #EE964B;
-            --text-dark: #2C3E50; 
-            --text-light: #ffffff;
-            --card-white: #ffffff;
-            --shadow-soft: 0 8px 32px rgba(44, 62, 80, 0.12);
-        }
+        /* ===== BACKGROUND: MESH GRADIENT + DEPTH EFFECT (Warm Royal Tone) ===== */
         
-        
-        /* ===== MESH GRADIENT + GLASS PANELS DESIGN (Latar Belakang Utama) ===== */
-        
-        /* Base Background - Light Cream to Gold mesh */
         .main {
             background: 
-                /* Mesh blob 1 - top left (Soft Cream) */
-                radial-gradient(ellipse at 10% 20%, rgba(250, 240, 202, 0.9) 0%, transparent 50%),
-                /* Mesh blob 2 - center (Light Gold) */
-                radial-gradient(ellipse at 50% 50%, rgba(244, 211, 94, 0.2) 0%, transparent 55%),
+                /* Mesh blob 1 - top left (Soft Pinkish Cream) */
+                radial-gradient(ellipse at 10% 20%, rgba(163, 64, 87, 0.5) 0%, transparent 60%),
+                /* Mesh blob 2 - center (Medium Crimson) */
+                radial-gradient(ellipse at 50% 50%, rgba(193, 27, 23, 0.15) 0%, transparent 60%),
                 /* Mesh blob 3 - top right (Light Cream) */
-                radial-gradient(ellipse at 85% 15%, rgba(250, 240, 202, 0.8) 0%, transparent 45%),
-                /* Mesh blob 4 - bottom left (Orange/Copper) */
-                radial-gradient(ellipse at 15% 85%, rgba(238, 150, 75, 0.15) 0%, transparent 50%),
-                /* Mesh blob 5 - bottom right (Light Cream) */
-                radial-gradient(ellipse at 90% 80%, rgba(254, 249, 231, 0.7) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 15%, rgba(163, 64, 87, 0.8) 0%, transparent 55%),
+                /* Mesh blob 4 - bottom left (Deep Maroon) */
+                radial-gradient(ellipse at 15% 85%, rgba(128, 0, 32, 0.1) 0%, transparent 60%),
                 /* Base gradient - Light Cream */
-                linear-gradient(135deg, var(--bg-light-cream) 0%, #FFFDF7 100%);
+                linear-gradient(135deg, var(--bg-light-cream) 0%, #FFFAFB 100%);
             background-attachment: fixed;
             min-height: 100vh;
             position: relative;
         }
         
-        /* Noise texture overlay for premium feel */
+        /* Noise texture (dijadikan lebih halus) */
         .main::before {
             content: '';
             position: fixed;
@@ -69,86 +56,70 @@ def add_custom_css():
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.08; /* Lebih jelas agar ada tekstur */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.05; /* Lebih halus */
             pointer-events: none;
             z-index: 0;
         }
         
-        /* Subtle gradient animation overlay */
-        .main::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at 30% 70%, rgba(244, 211, 94, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 30%, rgba(238, 150, 75, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        /* This targets the Streamlit main content area */
         .stApp {
             background: transparent;
         }
         
-        /* Glass Panel Effect for Content Container */
+        /* Glass Panel Effect for Content Container (Glassmorphism lebih elegan) */
         .block-container {
             position: relative;
             z-index: 1;
-            background: rgba(255, 255, 255, 0.85); /* Light glass */
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.98); /* Lebih solid */
+            backdrop-filter: blur(10px); /* Blur lebih ringan */
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 25px; /* Lebih membulat */
+            border: 1px solid rgba(128, 0, 32, 0.2); /* Border Maroon Halus */
             box-shadow: 
-                0 15px 50px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+                var(--shadow-soft),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95); /* Inner highlight lebih terang */
             margin: 1.5rem auto !important;
             padding: 2.5rem !important;
-            max-width: 1000px;
+            max-width: 1100px; /* Lebar lebih besar */
         }
         
         
         /* ===== SIDEBAR STYLING ===== */
         
-        /* Sembunyikan navigasi bawaan Streamlit */
+        /* Sembunyikan navigasi bawaan Streamlit (Tetap) */
         [data-testid="stSidebarNav"] { display: none !important; }
         [data-testid="stSidebarNavItems"] { display: none !important; }
         section[data-testid="stSidebar"] > div > div:first-child > div:first-child { display: none !important; }
 
-        /* Main Sidebar Container (DIUBAH KE SOFT CREAM) */
+        /* Main Sidebar Container (Lebih berkelas) */
         [data-testid="stSidebar"] {
-            background: var(--sidebar-cream); /* #FAF0CA Soft Cream */
-            padding-top: 1rem;
+            background: linear-gradient(180deg, var(--sidebar-cream) 0%, #903A50 100%); /* Gradient ke warna lebih gelap */
+            padding-top: 1.5rem;
             box-shadow: 
-                4px 0 30px rgba(0, 0, 0, 0.2),
-                inset -1px 0 0 rgba(238, 150, 75, 0.1);
+                5px 0 40px rgba(0, 0, 0, 0.3), /* Shadow lebih jelas */
+                inset -2px 0 0 rgba(128, 0, 32, 0.2);
             position: relative;
             overflow: hidden;
         }
         
-        /* Animated Gradient Border on Right Edge */
+        /* Animated Gradient Border (Dipertegas) */
         [data-testid="stSidebar"]::after {
             content: '';
             position: absolute;
             top: 0;
             right: 0;
-            width: 3px;
+            width: 4px; /* Lebih tebal */
             height: 100%;
             background: linear-gradient(180deg, 
                 var(--accent-gold) 0%, 
                 var(--accent-orange) 50%, 
                 var(--accent-gold) 100%
             );
-            background-size: 100% 200%;
-            animation: borderGlow 4s ease-in-out infinite;
+            background-size: 100% 300%; /* Lebih panjang untuk animasi yang lebih dramatis */
+            animation: borderGlow 6s ease-in-out infinite; /* Animasi lebih lambat */
             box-shadow: 
-                0 0 15px rgba(244, 211, 94, 0.5),
-                0 0 30px rgba(238, 150, 75, 0.3);
+                0 0 20px rgba(128, 0, 32, 0.7),
+                0 0 40px rgba(193, 27, 23, 0.5); /* Glow lebih kuat */
             z-index: 10;
         }
         
@@ -157,627 +128,475 @@ def add_custom_css():
             50% { background-position: 0% 100%; }
         }
         
-        /* Mesh Gradient Overlay */
-        [data-testid="stSidebar"]::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at 0% 0%, rgba(238, 150, 75, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 100% 50%, rgba(244, 211, 94, 0.1) 0%, transparent 40%),
-                radial-gradient(ellipse at 30% 100%, rgba(238, 150, 75, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-        
         /* Logo Styling */
         [data-testid="stSidebar"] img {
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.5); /* Background putih transparan */
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(238, 150, 75, 0.3);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(8px);
+            border: 2px solid var(--accent-gold);
             box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.15),
-                0 0 20px rgba(244, 211, 94, 0.3);
+                0 10px 30px rgba(0, 0, 0, 0.2),
+                0 0 25px rgba(128, 0, 32, 0.5);
         }
         
         [data-testid="stSidebar"] img:hover {
-            border-color: rgba(244, 211, 94, 0.8);
+            border-color: var(--accent-orange);
+            transform: scale(1.02);
         }
         
-        /* All Sidebar Text (DIUBAH KE DARK CHARCOAL) */
-        [data-testid="stSidebar"] * {
-            color: var(--text-dark) !important; /* #2C3E50 */
-            font-weight: 500;
-        }
-        
-        /* Sidebar Headings (DIUBAH KE ACCENT GOLD) */
+        /* Sidebar Headings (Dipertegas) */
         [data-testid="stSidebar"] .stMarkdown h2,
         [data-testid="stSidebar"] .stMarkdown h3 {
-            color: var(--accent-gold) !important; 
-            text-shadow: 0 0 5px rgba(244, 211, 94, 0.8);
-            font-weight: 800;
+            color: var(--text-dark) !important; 
+            text-shadow: 0 0 8px rgba(128, 0, 32, 0.5);
+            font-weight: 900;
         }
         
-        /* Sidebar Divider - Glowing */
+        /* Sidebar Divider - Glowing (Dipertegas) */
         [data-testid="stSidebar"] hr {
             background: linear-gradient(90deg, 
                 transparent 0%, 
-                rgba(244, 211, 94, 0.8) 20%, 
-                rgba(238, 150, 75, 1) 50%, 
-                rgba(244, 211, 94, 0.8) 80%, 
+                var(--accent-gold) 20%, 
+                var(--accent-orange) 50%, 
+                var(--accent-gold) 80%, 
                 transparent 100%
             );
-            box-shadow: 0 0 10px rgba(244, 211, 94, 0.6);
+            box-shadow: 0 0 15px rgba(128, 0, 32, 0.8);
+            height: 2px;
         }
         
-        /* ===== MENU BUTTONS - Glass Style ===== */
+        /* ===== MENU BUTTONS - Glass Style (Diperhalus) ===== */
         [data-testid="stSidebar"] .stButton > button {
-            background: rgba(255, 255, 255, 0.5) !important; /* Latar Belakang Putih Transparan */
-            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.7) !important; 
+            backdrop-filter: blur(10px);
             color: var(--text-dark) !important; 
-            border: 1px solid rgba(238, 150, 75, 0.3) !important;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease; 
+            border: 1px solid rgba(128, 0, 32, 0.3) !important;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transisi lebih profesional */
         }
         
         /* Hover Glow Effect */
         [data-testid="stSidebar"] .stButton > button:hover {
-            background: rgba(244, 211, 94, 0.3) !important; /* Background Gold Transparan */
+            background: rgba(128, 0, 32, 0.2) !important; /* Maroon Transparan lembut */
             border-color: var(--accent-gold) !important;
             color: var(--text-dark) !important;
-            transform: translateX(5px);
+            transform: translateX(8px); /* Geser lebih jauh */
             box-shadow: 
-                0 0 10px rgba(244, 211, 94, 0.4),
-                inset 0 0 10px rgba(244, 211, 94, 0.1) !important;
+                0 0 15px rgba(128, 0, 32, 0.6),
+                inset 0 0 5px rgba(255, 255, 255, 0.5) !important;
         }
         
         /* ===== ACTIVE/PRIMARY BUTTON (Current Page) ===== */
         [data-testid="stSidebar"] .stButton > button[kind="primary"] {
             background: linear-gradient(135deg, 
-                rgba(244, 211, 94, 0.4) 0%, 
-                rgba(238, 150, 75, 0.5) 100%
+                rgba(128, 0, 32, 0.5) 0%, 
+                rgba(193, 27, 23, 0.6) 100%
             ) !important;
-            border: 1px solid var(--accent-orange) !important;
-            border-left: 5px solid var(--accent-gold) !important;
-            color: var(--text-dark) !important; 
-            font-weight: 700 !important;
+            border: 2px solid var(--accent-orange) !important;
+            border-left: 8px solid var(--accent-gold) !important; /* Border tebal */
+            color: var(--text-light) !important; /* Warna teks diubah ke putih agar kontras */
+            font-weight: 800 !important;
             box-shadow: 
-                0 0 25px rgba(244, 211, 94, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-            transform: translateX(5px);
+                0 0 30px rgba(128, 0, 32, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+            transform: translateX(8px);
         }
         
         
         /* ================================================= */
-        /* ===== HOME PAGE STYLES (Dipastikan Konsisten) ===== */
+        /* ===== HOME PAGE STYLES - Diperhalus ===== */
         /* ================================================= */
 
         /* --- 1. Hero Section (Header Utama) --- */
         .hero-section {
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-orange) 100%); 
-            padding: 2rem 1.5rem;
-            border-radius: 18px;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 8px 25px rgba(238, 150, 75, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(254, 249, 231, 0.5) 0%, transparent 50%);
-            pointer-events: none;
+            padding: 3rem 2rem; /* Padding lebih besar */
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(193, 27, 23, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.7); /* Border Putih lembut */
         }
         
         .hero-title {
-            font-size: 2.2rem;
+            font-size: 2.5rem; /* Lebih besar */
             font-weight: 900;
-            color: var(--text-dark); 
-            margin-bottom: 0.8rem;
-            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
-            display: flex; /* Memastikan logo dan teks sejajar */
-            align-items: center;
-            justify-content: center;
+            color: var(--text-light); /* Diganti ke putih agar kontras dengan latar maroon */
+            text-shadow: 0 3px 5px rgba(0, 0, 0, 0.4); /* Shadow lebih kuat */
         }
         
         .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-dark); 
+            font-size: 1.2rem;
+            color: var(--text-light); /* Diganti ke putih agar kontras dengan latar maroon */
             font-weight: 600;
-            max-width: 650px;
-            margin: 0 auto;
-            line-height: 1.5;
         }
         
-        /* --- 2. Intro Section (About/Deskripsi Singkat) --- */
+        /* --- 2. Intro Section --- */
         .intro-section {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(250, 240, 202, 0.9) 100%);
-            border-left: 5px solid var(--accent-orange);
-            padding: 1rem 1.5rem;
-            border-radius: 16px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(163, 64, 87, 0.3) 100%); /* Warna Cream dengan Maroon Transparan */
+            border-left: 6px solid var(--accent-gold); /* Border lebih tebal, warna Deep Maroon */
+            padding: 1.5rem 2rem;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
         
-        .intro-text {
-            font-size: 1rem;
-            color: #4A4A4A; 
-            font-weight: 500;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        /* --- 3. Feature Cards (3 Kolom) --- */
+        /* --- 3. Feature Cards --- */
         .feature-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(254, 249, 231, 0.88) 100%);
-            border: 1px solid rgba(238, 150, 75, 0.3);
-            border-radius: 16px;
-            padding: 1.2rem;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease; 
-            text-align: center; /* Tambahkan rata tengah */
+            background: linear-gradient(135deg, var(--bg-light-cream) 0%, rgba(255, 255, 255, 0.95) 100%);
+            border: 1px solid rgba(128, 0, 32, 0.1);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease; 
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent-gold);
+            transform: translateY(-8px) scale(1.03); /* Hover lebih menonjol */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent-orange);
         }
         
         .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.8rem;
-            color: var(--accent-orange);
-            filter: drop-shadow(0 2px 5px rgba(238, 150, 75, 0.3));
+            font-size: 3rem; /* Ikon lebih besar */
+            color: var(--accent-gold);
+            filter: drop-shadow(0 4px 5px rgba(193, 27, 23, 0.5));
         }
         
         .feature-title {
-            font-size: 1.2rem !important;
+            font-size: 1.3rem !important;
             font-weight: 900 !important;
-            color: var(--text-dark) !important;
-            margin-bottom: 0.6rem !important;
-            background: linear-gradient(135deg, rgba(244, 211, 94, 0.2) 0%, rgba(238, 150, 75, 0.1) 100%);
-            padding: 0.4rem 0.8rem;
-            border-radius: 8px;
-            display: inline-block; /* Agar background hanya di teks */
-        }
-        
-        .feature-desc {
-            font-size: 0.85rem;
-            color: #4A4A4A;
-            font-weight: 400;
+            /* Latar belakang judul dihilangkan agar lebih bersih */
+            background: none; 
+            padding: 0;
+            margin-bottom: 0.8rem !important;
         }
         
         /* --- 4. Section Title (Umum) --- */
         .section-title {
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-size: 2rem;
+            font-weight: 900;
             color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid var(--accent-gold);
+            padding-bottom: 0.5rem;
         }
         
         /* --- 5. Step Cards (How It Works) --- */
         .step-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(254, 249, 231, 0.88) 100%);
-            border: 1px solid rgba(238, 150, 75, 0.2);
-            border-radius: 14px;
-            padding: 1rem;
-            margin-bottom: 0.7rem;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            display: flex; 
-            align-items: center; 
-            gap: 1rem; 
+            background: var(--bg-light-cream);
+            border: 1px solid rgba(128, 0, 32, 0.2);
+            border-radius: 18px;
+            padding: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease; 
         }
         
         .step-card:hover {
-            transform: translateX(3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent-gold);
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--accent-orange);
         }
         
         /* Nomor langkah */
         .step-card > p:first-child {
-            font-size: 1.5rem; 
-            font-weight: 800; 
+            font-size: 1.8rem; 
+            font-weight: 900; 
             color: var(--accent-orange); 
-            margin: 0; 
-            flex-shrink: 0;
-            line-height: 1;
-            padding: 0.2rem 0.6rem;
-            border-radius: 50%;
-            border: 2px solid var(--accent-gold);
-            background: var(--bg-light-cream);
-        }
-
-        /* Konten langkah */
-        .step-content {
-            flex-grow: 1;
+            border: 3px solid var(--accent-gold);
+            background: var(--sidebar-cream); /* Warna lebih jelas */
+            box-shadow: 0 0 5px rgba(128, 0, 32, 0.5);
         }
         
         /* Pastikan judul langkah berwarna Text Dark */
         .step-title {
-            font-size: 1.1rem !important;
+            font-size: 1.2rem !important;
             font-weight: 900 !important;
             color: var(--text-dark) !important;
-            margin: 0 0 0.4rem 0 !important;
-            background: rgba(244, 211, 94, 0.15); /* Gold transparan */
-            padding: 0.3rem 0.6rem;
-            border-radius: 6px;
-            display: inline-block; 
-        }
-        
-        .step-desc {
-            font-size: 0.85rem;
-            color: #4A4A4A;
-            font-weight: 400;
-            margin: 0; 
+            margin: 0 0 0.5rem 0 !important;
+            /* Latar belakang dihilangkan agar lebih bersih */
+            background: none; 
+            padding: 0;
         }
         
         /* --- 6. CTA Section (Call to Action) --- */
         .cta-section {
-            background: linear-gradient(135deg, rgba(254, 249, 231, 1) 0%, rgba(250, 240, 202, 0.9) 100%);
-            border: 3px solid var(--accent-gold);
-            border-radius: 20px;
-            padding: 1.8rem;
-            box-shadow: 0 5px 20px rgba(238, 150, 75, 0.1);
-            text-align: center; 
+            background: linear-gradient(135deg, var(--sidebar-cream) 0%, var(--bg-light-cream) 100%);
+            border: 4px double var(--accent-gold); /* Border Double untuk efek mewah */
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(193, 27, 23, 0.2);
         }
         
         .cta-title {
-            font-size: 1.8rem !important;
+            font-size: 2rem !important;
             font-weight: 900 !important;
-            color: var(--text-dark) !important;
+            color: var(--accent-gold) !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
-        .cta-subtitle {
-            font-size: 1rem !important;
-            color: #4A4A4A !important;
-            font-weight: 500 !important;
-            margin: 0.5rem 0 1.5rem 0 !important; 
-        }
-        
         
         /* ================================================= */
-        /* ===== UPLOAD DATASET PAGE STYLES (Diperbaiki) ===== */
+        /* ===== UPLOAD DATASET PAGE STYLES - Diperhalus ===== */
         /* ================================================= */
         
         /* Upload Header */
         .upload-header {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(250, 240, 202, 0.8) 100%);
-            border-radius: 18px;
-            padding: 1rem; 
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(163, 64, 87, 0.5) 100%);
+            border-radius: 20px;
+            padding: 1.5rem; 
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(128, 0, 32, 0.1);
         }
         
-        /* Judul menggunakan Dark Charcoal/Orange gradient */
+        /* Judul menggunakan Dark Maroon/Crimson gradient */
         .upload-title {
-            font-size: 2.2rem;
-            font-weight: 800;
+            font-size: 2.5rem;
+            font-weight: 900;
             background: linear-gradient(135deg, var(--text-dark) 0%, var(--accent-orange) 100%); 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        .upload-subtitle {
-            font-size: 1.1rem;
-            color: #5A6773;
-        }
-        
         /* CUSTOM FILE UPLOADER STYLING (Override Streamlit Component) */
         
-        /* File uploader drag-drop area */
+        /* File uploader drag-drop area (Lebih elegan) */
         .main [data-testid="stFileUploader"] section > div {
-            background: linear-gradient(135deg, var(--text-dark) 0%, #4A4A4A 100%) !important; 
-            border: 3px dashed var(--accent-gold) !important;
-            border-radius: 20px !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-            padding: 2rem !important;
-            transition: all 0.3s ease;
+            background: var(--text-dark) !important; 
+            border: 4px dashed var(--accent-gold) !important;
+            border-radius: 25px !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5) !important;
+            padding: 3rem !important;
+            transition: all 0.4s ease;
         }
         
         .main [data-testid="stFileUploader"] section > div:hover {
-            background: linear-gradient(135deg, #4A4A4A 0%, var(--text-dark) 100%) !important;
+            background: #400010 !important; /* Warna Darker Maroon */
             border-color: var(--accent-orange) !important;
-        }
-        
-        /* Text inside uploader */
-        .main [data-testid="stFileUploader"] section > div > div, 
-        .main [data-testid="stFileUploader"] section small {
-            color: var(--bg-light-cream) !important; /* Warna teks Light Cream */
         }
         
         /* Browse files button */
         .main [data-testid="stFileUploader"] button {
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-orange) 100%) !important;
-            color: var(--text-dark) !important;
-            box-shadow: 0 3px 10px rgba(238, 150, 75, 0.4) !important;
+            color: var(--text-light) !important; /* Diubah ke putih agar kontras */
+            box-shadow: 0 5px 15px rgba(193, 27, 23, 0.5) !important;
+            font-weight: 700 !important;
         }
         
         /* Uploaded file display */
         .main [data-testid="stFileUploader"] section + div {
-            background: rgba(255, 255, 255, 0.95) !important;
-            border: 2px solid var(--accent-gold) !important;
-            border-radius: 10px !important;
-            margin-top: 1rem;
+            background: var(--bg-light-cream) !important;
+            border: 3px solid var(--accent-gold) !important;
+            border-radius: 12px !important;
         }
 
         /* Stats Cards (untuk display data) */
         .stat-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(254, 249, 231, 0.88) 100%);
-            border: 1px solid rgba(238, 150, 75, 0.2);
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            padding: 1rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, var(--sidebar-cream) 100%);
+            border: 1px solid rgba(128, 0, 32, 0.3);
+            border-radius: 18px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1.2rem;
+            transition: all 0.3s ease;
         }
         
         .stat-card:hover {
-            border-color: var(--accent-gold);
+            border-color: var(--accent-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         
         .stat-icon {
-            color: var(--accent-orange);
+            color: var(--accent-gold);
+            font-size: 2rem;
         }
         
         .stat-value {
             color: var(--text-dark);
+            font-weight: 800;
+            font-size: 1.5rem;
         }
 
 
         /* ================================================= */
-        /* ===== ABOUT PAGE STYLES (Penambahan Baru) ===== */
+        /* ===== ABOUT PAGE STYLES - Diperhalus ===== */
         /* ================================================= */
 
         /* --- 1. Header Section (about-header) --- */
         .about-header {
-            background: linear-gradient(135deg, var(--sidebar-cream) 0%, var(--bg-light-cream) 100%); 
-            padding: 1.5rem;
-            border-radius: 18px;
-            text-align: center;
-            margin-bottom: 2rem;
-            border: 1px solid var(--accent-gold);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, var(--sidebar-cream) 0%, #903A50 100%); 
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2.5rem;
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .about-icon {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
+            font-size: 3.5rem;
             color: var(--accent-orange);
+            text-shadow: 0 0 10px rgba(193, 27, 23, 0.5);
         }
 
         .about-title {
-            font-size: 2rem !important;
+            font-size: 2.5rem !important;
             font-weight: 900 !important;
             color: var(--text-dark) !important;
-            text-shadow: 0 2px 5px rgba(244, 211, 94, 0.5);
-            margin: 0 !important;
+            text-shadow: 0 3px 5px rgba(128, 0, 32, 0.6);
         }
 
         .about-subtitle {
-            font-size: 1rem !important;
-            color: #4A4A4A;
-            font-weight: 500;
-            margin-top: 0.5rem !important;
+            font-size: 1.1rem !important;
+            color: #503038; /* Darker text for readability */
+            font-weight: 600;
         }
 
         /* --- 2. Description Card (about-desc-card) --- */
         .about-desc-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-left: 5px solid var(--accent-gold);
-            padding: 1.5rem;
-            border-radius: 14px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .adc-text {
-            font-size: 1rem;
-            color: var(--text-dark);
-            line-height: 1.6;
-            margin: 0;
+            background: var(--bg-light-cream);
+            border-left: 6px solid var(--accent-gold);
+            padding: 1.8rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .adc-text strong {
-            color: var(--accent-orange);
-            font-weight: 700;
+            color: var(--accent-gold);
+            font-weight: 800;
         }
 
-        /* --- 3. Team & Tech Headers --- */
+        /* --- 3. Team & Tech Headers (Lebih jelas) --- */
         .team-header, .tech-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--accent-gold);
-            padding-bottom: 0.5rem;
-        }
-
-        .team-h-icon, .tech-h-icon {
-            font-size: 1.5rem;
+            border-bottom: 3px solid var(--accent-orange);
+            padding-bottom: 0.6rem;
+            margin-top: 2rem;
         }
 
         .team-h-title, .tech-h-title {
-            font-size: 1.3rem;
-            font-weight: 800;
+            font-size: 1.5rem;
+            font-weight: 900;
             color: var(--text-dark);
-            margin: 0;
         }
 
-        /* --- 4. Team Card --- */
+        /* --- 4. Team Card (Lebih mewah) --- */
         .team-card {
-            text-align: center;
-            padding: 1rem 0.5rem;
-            background: linear-gradient(135deg, var(--bg-light-cream) 0%, rgba(255, 255, 255, 0.9) 100%);
-            border: 1px solid rgba(238, 150, 75, 0.1);
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            padding: 1.2rem 0.8rem;
+            background: linear-gradient(135deg, var(--bg-light-cream) 0%, rgba(255, 255, 255, 0.95) 100%);
+            border: 1px solid rgba(128, 0, 32, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease; 
         }
 
         .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent-orange);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent-gold);
         }
         
-        /* PERBAIKAN STYLING GAMBAR TIM (Menargetkan class .team-avatar-img yang baru) */
-        .team-avatar-container {
-            /* Pastikan container gambar terpusat */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 0.8rem;
-        }
-
         .team-avatar-img {
-            /* TARGET TAG IMG DARI about.py */
             border-radius: 50% !important; 
-            object-fit: cover;
-            height: 100px; /* Harus sama dengan width untuk lingkaran sempurna */
-            width: 100px;
-            margin: 0 auto; /* Tengah di dalam flex container */
-            /* Tambahkan border & shadow tema Cream & Gold */
-            border: 3px solid var(--accent-gold); 
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        /* Pastikan Streamlit Container untuk Kolom juga Rata Tengah */
-        /* Ini menargetkan div Streamlit yang membungkus kolom (kolom dibuat rata tengah) */
-        [data-testid*="stHorizontalBlock"] > div > div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            height: 110px; 
+            width: 110px;
+            border: 4px solid var(--accent-gold); /* Border lebih tebal */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .team-name {
-            font-weight: 700;
+            font-weight: 800;
             color: var(--text-dark);
-            margin-bottom: 0.2rem;
+            font-size: 1.1rem;
         }
 
         .team-nim {
-            font-size: 0.8rem;
-            color: #5A6773;
+            font-size: 0.9rem;
+            color: #63404B; /* Darker text for readability */
         }
 
         /* --- 5. Tech Card --- */
         .tech-card {
-            text-align: center;
-            padding: 0.8rem 0.5rem;
+            padding: 1rem 0.8rem;
             background: var(--sidebar-cream);
-            border-radius: 8px;
-            border: 1px solid var(--accent-gold);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            border-radius: 10px;
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
         }
 
         .tech-card:hover {
             background: var(--accent-gold);
-            transform: scale(1.05);
+            transform: scale(1.08);
+            box-shadow: 0 5px 15px rgba(128, 0, 32, 0.5);
         }
 
         .tech-icon {
-            font-size: 1.5rem;
-            line-height: 1;
+            font-size: 1.8rem;
         }
 
         .tech-name {
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-top: 0.3rem;
-            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 1rem;
         }
 
         /* --- 6. Footer --- */
         .about-footer {
-            text-align: center;
-            padding: 1rem 0;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(44, 62, 80, 0.1);
+            border-top: 2px solid rgba(32, 0, 8, 0.1);
+            padding-top: 1.5rem;
         }
 
-        .about-footer p {
-            font-size: 0.8rem;
-            color: #5A6773;
-            margin: 0;
-        }
+        /* --- STYLES BAWAAN STREAMLIT (Penambahan untuk tombol) --- */
         
-        
-        /* --- STYLES BAWAAN STREAMLIT (Perlu Override agar tidak merusak tema) --- */
-        
-        /* Header Streamlit */
-        header {
-            background-color: transparent !important;
-            box-shadow: none !important;
-            border-bottom: none !important;
-        }
-
-        /* Judul Markdown (H1, H2, H3, H4) */
-        .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4 {
-            color: var(--text-dark) !important;
-        }
-        
-        .stMarkdown h1 {
-            font-weight: 900 !important;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Input widgets (Slider, Selectbox, NumberInput, TextInput) */
-        /* Menggunakan selector yang lebih umum dan spesifik */
-        [data-testid*="stForm"] > div > div, /* Target input di dalam form */
-        div[data-testid*="stSlider"], 
-        div[data-testid*="stSelectbox"],
-        div[data-testid*="stNumberInput"],
-        div[data-testid*="stTextInput"] {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 1rem;
-            border-radius: 10px;
-            border: 1px solid rgba(238, 150, 75, 0.2);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            margin-bottom: 1rem; /* Tambahkan sedikit jarak */
-        }
-        
-        /* Warna Label (Selector yang lebih tahan lama) */
-        /* Targets label elements */
-        label {
-            color: var(--text-dark) !important;
-            font-weight: 600 !important;
-        }
-        
-        /* Targets label in Streamlit components */
-        div[data-testid*="stForm"] label,
-        .st-emotion-cache-11r9nwr, 
-        .st-emotion-cache-10oahgq, 
-        .st-emotion-cache-vk3ypz {
-            color: var(--text-dark) !important;
-            font-weight: 700 !important; /* Ditingkatkan agar lebih kontras */
-        }
-
-        /* Tombol Streamlit Bawaan (Bukan Sidebar) */
+        /* Tombol Streamlit Bawaan (Bukan Sidebar) - Diperjelas */
         .stButton button {
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-orange) 100%) !important;
-            color: var(--text-dark) !important;
-            font-weight: 700 !important;
+            color: var(--text-light) !important; /* Diubah ke putih agar kontras */
+            font-weight: 800 !important;
             border: none !important;
-            border-radius: 8px !important; /* Konsistenkan radius */
-            box-shadow: 0 4px 10px rgba(238, 150, 75, 0.3);
-            transition: all 0.3s ease;
+            border-radius: 10px !important;
+            padding: 0.5rem 1.5rem;
+            box-shadow: 0 5px 15px rgba(193, 27, 23, 0.5);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .stButton button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(193, 27, 23, 0.8);
+            opacity: 0.9;
         }
         </style>
         """, unsafe_allow_html=True)
+
+# Contoh penggunaan (opsional, untuk memastikan kode berjalan)
+if __name__ == '__main__':
+    st.set_page_config(layout="wide")
+    add_custom_css()
+    
+    st.markdown('<div class="hero-section"><h1 class="hero-title">Aplikasi Analisis Data Royal Maroon</h1><p class="hero-subtitle">Visualisasi Data dengan Gaya Deep Maroon & Gold</p></div>', unsafe_allow_html=True)
+    
+    st.markdown('<div class="intro-section">Ini adalah contoh seksi Intro dengan border kiri Deep Maroon.</div>', unsafe_allow_html=True)
+    
+    st.markdown('<h2 class="section-title">Fitur Utama</h2>', unsafe_allow_html=True)
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.markdown('<div class="feature-card"><span class="feature-icon">📊</span><h3 class="feature-title">Visualisasi Canggih</h3><p>Gunakan chart dan grafik yang elegan.</p></div>', unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown('<div class="feature-card"><span class="feature-icon">💾</span><h3 class="feature-title">Upload Data Fleksibel</h3><p>Mendukung format CSV dan Excel.</p></div>', unsafe_allow_html=True)
+
+    with col3:
+        st.markdown('<div class="feature-card"><span class="feature-icon">🚀</span><h3 class="feature-title">Performa Tinggi</h3><p>Dibuat dengan Python dan Streamlit.</p></div>', unsafe_allow_html=True)
+    
+    st.sidebar.title("NAVIGASI")
+    st.sidebar.markdown('<hr>', unsafe_allow_html=True)
+    
+    # Contoh tombol sidebar biasa
+    st.sidebar.markdown('<p style="margin-top: 2rem; color: var(--text-dark); font-weight: 600;">Halaman</p>', unsafe_allow_html=True)
+    st.sidebar.button("Home", key="home_btn")
+    
+    # Contoh tombol sidebar primer (sebagai halaman aktif)
+    st.sidebar.button("Upload Data", key="upload_btn", type="primary")
+    st.sidebar.button("Tentang Kami", key="about_btn")
+    
+    # Contoh bagian 'About' (untuk menunjukkan CSS About Page)
+    st.markdown('---')
+    st.markdown('<div class="about-header"><span class="about-icon">👑</span><h2 class="about-title">Tentang Proyek Royal Maroon</h2><p class="about-subtitle">Menggabungkan kemewahan dengan kehangatan warna royal.</p></div>', unsafe_allow_html=True)
+    
+    st.markdown('<div class="about-desc-card"><p class="adc-text">Aplikasi ini dibuat untuk menampilkan kemampuan kustomisasi <strong>Streamlit</strong> menggunakan tema <strong>Deep Maroon & Gold</strong> yang elegan dan berkelas.</p></div>', unsafe_allow_html=True)
