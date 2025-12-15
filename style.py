@@ -479,9 +479,6 @@ def add_custom_css():
             color: #5A6773;
         }
         
-        /* Upload Zone (Ini adalah overlay untuk stFileUploader) - Hapus: tidak diperlukan jika sudah ada custom uploader di bawah */
-        
-        
         /* CUSTOM FILE UPLOADER STYLING (Override Streamlit Component) */
         
         /* File uploader drag-drop area */
@@ -540,6 +537,187 @@ def add_custom_css():
         .stat-value {
             color: var(--text-dark);
         }
+
+
+        /* ================================================= */
+        /* ===== ABOUT PAGE STYLES (Penambahan Baru) ===== */
+        /* ================================================= */
+
+        /* --- 1. Header Section (about-header) --- */
+        .about-header {
+            background: linear-gradient(135deg, var(--sidebar-cream) 0%, var(--bg-light-cream) 100%); 
+            padding: 1.5rem;
+            border-radius: 18px;
+            text-align: center;
+            margin-bottom: 2rem;
+            border: 1px solid var(--accent-gold);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-orange);
+        }
+
+        .about-title {
+            font-size: 2rem !important;
+            font-weight: 900 !important;
+            color: var(--text-dark) !important;
+            text-shadow: 0 2px 5px rgba(244, 211, 94, 0.5);
+            margin: 0 !important;
+        }
+
+        .about-subtitle {
+            font-size: 1rem !important;
+            color: #4A4A4A;
+            font-weight: 500;
+            margin-top: 0.5rem !important;
+        }
+
+        /* --- 2. Description Card (about-desc-card) --- */
+        .about-desc-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-left: 5px solid var(--accent-gold);
+            padding: 1.5rem;
+            border-radius: 14px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .adc-text {
+            font-size: 1rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .adc-text strong {
+            color: var(--accent-orange);
+            font-weight: 700;
+        }
+
+        /* --- 3. Team & Tech Headers --- */
+        .team-header, .tech-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        .team-h-icon, .tech-h-icon {
+            font-size: 1.5rem;
+        }
+
+        .team-h-title, .tech-h-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        /* --- 4. Team Card --- */
+        .team-card {
+            text-align: center;
+            padding: 1rem 0.5rem;
+            background: linear-gradient(135deg, var(--bg-light-cream) 0%, rgba(255, 255, 255, 0.9) 100%);
+            border: 1px solid rgba(238, 150, 75, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-orange);
+        }
+        
+        /* PERBAIKAN STYLING GAMBAR TIM (Menargetkan class .team-avatar-img yang baru) */
+        .team-avatar-container {
+            /* Pastikan container gambar terpusat */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .team-avatar-img {
+            /* TARGET TAG IMG DARI about.py */
+            border-radius: 50% !important; 
+            object-fit: cover;
+            height: 100px; /* Harus sama dengan width untuk lingkaran sempurna */
+            width: 100px;
+            margin: 0 auto; /* Tengah di dalam flex container */
+            /* Tambahkan border & shadow tema Cream & Gold */
+            border: 3px solid var(--accent-gold); 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        /* Pastikan Streamlit Container untuk Kolom juga Rata Tengah */
+        /* Ini menargetkan div Streamlit yang membungkus kolom (kolom dibuat rata tengah) */
+        [data-testid*="stHorizontalBlock"] > div > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .team-name {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .team-nim {
+            font-size: 0.8rem;
+            color: #5A6773;
+        }
+
+        /* --- 5. Tech Card --- */
+        .tech-card {
+            text-align: center;
+            padding: 0.8rem 0.5rem;
+            background: var(--sidebar-cream);
+            border-radius: 8px;
+            border: 1px solid var(--accent-gold);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            background: var(--accent-gold);
+            transform: scale(1.05);
+        }
+
+        .tech-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .tech-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            color: var(--text-dark);
+        }
+
+        /* --- 6. Footer --- */
+        .about-footer {
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(44, 62, 80, 0.1);
+        }
+
+        .about-footer p {
+            font-size: 0.8rem;
+            color: #5A6773;
+            margin: 0;
+        }
+        
         
         /* --- STYLES BAWAAN STREAMLIT (Perlu Override agar tidak merusak tema) --- */
         
@@ -587,8 +765,8 @@ def add_custom_css():
         .st-emotion-cache-11r9nwr, 
         .st-emotion-cache-10oahgq, 
         .st-emotion-cache-vk3ypz {
-             color: var(--text-dark) !important;
-             font-weight: 700 !important; /* Ditingkatkan agar lebih kontras */
+            color: var(--text-dark) !important;
+            font-weight: 700 !important; /* Ditingkatkan agar lebih kontras */
         }
 
         /* Tombol Streamlit Bawaan (Bukan Sidebar) */
@@ -601,26 +779,5 @@ def add_custom_css():
             box-shadow: 0 4px 10px rgba(238, 150, 75, 0.3);
             transition: all 0.3s ease;
         }
-
-        .stButton button:hover {
-            background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-gold) 100%) !important;
-            box-shadow: 0 6px 15px rgba(238, 150, 75, 0.4);
-            transform: translateY(-2px);
-        }
-        
-        /* Success/Warning/Error boxes */
-        [data-testid="stAlert"] {
-            border-left: 5px solid var(--accent-orange) !important;
-            border-radius: 10px !important;
-        }
-        
-        /* DataFrame/Tabel Styling */
-        .stDataFrame, .stTable {
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        
         </style>
-        """,
-        unsafe_allow_html=True
-    )
+        """, unsafe_allow_html=True)

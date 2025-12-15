@@ -1,4 +1,29 @@
 import streamlit as st
+import base64
+
+def get_img_as_base64(file_path):
+    """Konversi gambar lokal ke string Base64 dan kembalikan Data URL."""
+    try:
+        # Buka file dalam mode biner (rb)
+        with open(file_path, "rb") as f:
+            # Encode Base64 dan decode ke string
+            img_bytes = f.read()
+            base64_encoded = base64.b64encode(img_bytes).decode()
+            
+            # Mendapatkan jenis file (misalnya 'jpeg')
+            file_extension = file_path.split('.')[-1]
+            
+            # Kembalikan Data URL
+            return f"data:image/{file_extension};base64,{base64_encoded}"
+            
+    except FileNotFoundError:
+        # Jika file tidak ditemukan, kembalikan string kosong atau URL placeholder
+        st.warning(f"File gambar tidak ditemukan: {file_path}")
+        return "" # Mengembalikan string kosong akan mencegah gambar ditampilkan
+    except Exception as e:
+        st.error(f"Error saat memproses gambar {file_path}: {e}")
+        return ""
+
 
 def show_about():
     # ===== HEADER =====
@@ -6,7 +31,9 @@ def show_about():
         <div class="about-header">
             <div class="about-icon">📊</div>
             <h1 class="about-title">Tentang Aplikasi</h1>
-            <p class="about-subtitle">Analisis Faktor Ekonomi dan Pengaruhnya terhadap IPK Mahasiswa</p>
+            <p class="about-subtitle">
+                Analisis Pengaruh Media Sosial dan Durasi Tidur terhadap Prestasi Akademik Mahasiswa
+            </p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -14,10 +41,16 @@ def show_about():
     st.markdown("""
         <div class="about-desc-card">
             <p class="adc-text">
-                Aplikasi ini dibuat untuk membantu memahami bagaimana kondisi ekonomi mahasiswa 
-                dapat berpengaruh terhadap capaian IPK. Sistem memanfaatkan algoritma 
-                <strong>Random Forest Regression</strong> untuk menganalisis pola dan 
-                menemukan variabel ekonomi yang paling berperan dalam memengaruhi performa akademik.
+                Aplikasi ini dikembangkan untuk menganalisis bagaimana 
+                <strong>penggunaan media sosial</strong> dan 
+                <strong>durasi tidur</strong> berpengaruh terhadap 
+                <strong>prestasi akademik mahasiswa</strong>.
+                <br><br>
+                Sistem ini menggunakan pendekatan statistik 
+                <strong>Regresi Logistik</strong>, yang sesuai untuk memodelkan
+                variabel target bersifat kategorikal, seperti prestasi akademik
+                (baik atau tidak baik), serta untuk melihat peluang dan arah
+                pengaruh dari setiap faktor yang dianalisis.
             </p>
         </div>
     """, unsafe_allow_html=True)
@@ -33,9 +66,10 @@ def show_about():
     st.markdown("""
         <div class="about-desc-card">
             <ul class="adc-text">
-                <li>Menyediakan alat analisis sederhana berbasis machine learning.</li>
-                <li>Memberikan gambaran hubungan antara ekonomi dan IPK.</li>
-                <li>Menyajikan visualisasi yang mudah dibaca dan informatif.</li>
+                <li>Menganalisis pengaruh penggunaan media sosial terhadap prestasi akademik mahasiswa.</li>
+                <li>Menganalisis hubungan durasi tidur dengan capaian akademik mahasiswa.</li>
+                <li>Menyediakan model prediksi prestasi akademik berbasis regresi logistik.</li>
+                <li>Menyajikan visualisasi dan hasil analisis yang mudah dipahami.</li>
             </ul>
         </div>
     """, unsafe_allow_html=True)
@@ -49,21 +83,32 @@ def show_about():
     """, unsafe_allow_html=True)
 
     team_members = [
-        {"name": "Nama Anggota 1", "nim": "NIM001", "icon": "🧑‍💻"},
-        {"name": "Nama Anggota 2", "nim": "NIM002", "icon": "🧑‍💻"},
-        {"name": "Nama Anggota 3", "nim": "NIM003", "icon": "🧑‍💻"},
+        {"name": "Annisa Revalina Harahap", "nim": "2311521001", "image": "images/annisa.jpeg"},
+        {"name": "Dinda Arfitri", "nim": "2311521002", "image": "images/dinda.jpeg"},
+        {"name": "Velisa Dwi Sonia", "nim": "NIM0231152203903", "image": "images/velisa.jpeg"},
     ]
 
     cols = st.columns(len(team_members))
+    
     for idx, m in enumerate(team_members):
+        # MENGGUNAKAN FUNGSI BARU UNTUK MENDAPATKAN DATA URL BASE64
+        data_url = get_img_as_base64(m['image'])
+        
         with cols[idx]:
             st.markdown(f"""
                 <div class="team-card">
-                    <div class="team-avatar">{m['icon']}</div>
+                    <div class="team-avatar-container">
+                        <img src="{data_url}" alt="{m['name']}" class="team-avatar-img">
+                    </div> 
                     <div class="team-name">{m['name']}</div>
                     <div class="team-nim">{m['nim']}</div>
                 </div>
             """, unsafe_allow_html=True)
+            
+            # KODE TRY-EXCEPT UNTUK CEK FILE DIHAPUS KARENA SUDAH DIHANDLE OLEH FUNGSI DI ATAS
+            # if data_url == "":
+            #     st.warning(f"Bingkai {m['name']} muncul, tapi foto hilang karena FileNotFoundError!")
+            
 
     # ===== TECH =====
     st.markdown("""
@@ -93,6 +138,6 @@ def show_about():
     # ===== FOOTER =====
     st.markdown("""
         <div class="about-footer">
-            <p>© 2025 Proyek Analisis Faktor Ekonomi dan IPK</p>
+            <p>© 2025 | Analisis Pengaruh Media Sosial dan Durasi Tidur terhadap Prestasi Akademik Mahasiswa</p>
         </div>
     """, unsafe_allow_html=True)

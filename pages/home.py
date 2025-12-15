@@ -5,7 +5,8 @@ from pathlib import Path
 def show_home():
     """
     Halaman Beranda (Home)
-    Analisis Pengaruh Media Sosial terhadap Prestasi Akademik Mahasiswa
+    Analisis Pengaruh Media Sosial dan Durasi Tidur
+    terhadap Prestasi Akademik Mahasiswa
     menggunakan Regresi Logistik
     """
 
@@ -37,8 +38,11 @@ def show_home():
     st.markdown(f"""
         <h1 class="hero-title" style="text-align: center !important;">
             {logo_html}
-            Analisis Pengaruh Penggunaan Media Sosial dan Durasi Tidur terhadap Prestasi Akademik Mahasiswa Menggunakan Regresi Logistik
+            Analisis Pengaruh Media Sosial dan Durasi Tidur terhadap Prestasi Akademik Mahasiswa
         </h1>
+        <p class="hero-subtitle">
+            Pendekatan Statistik Menggunakan Regresi Logistik
+        </p>
     """, unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -49,15 +53,16 @@ def show_home():
         <div class="intro-section">
             <h3 style="color: #2980b9; margin-top: 0;">Tentang Aplikasi</h3>
             <p class="intro-text">
-                Aplikasi ini bertujuan untuk menganalisis bagaimana 
-                <strong>penggunaan media sosial</strong> dan 
-                <strong>durasi tidur</strong> berpengaruh terhadap 
+                Aplikasi ini dikembangkan untuk menganalisis pengaruh
+                <strong>penggunaan media sosial</strong> dan
+                <strong>durasi tidur</strong> terhadap
                 <strong>prestasi akademik mahasiswa</strong>.
                 <br><br>
-                Analisis dilakukan menggunakan pendekatan statistik 
-                <strong>Regresi Logistik</strong>, yang sesuai untuk
-                memodelkan variabel target bersifat kategori 
-                (prestasi akademik baik atau tidak).
+                Prestasi akademik dimodelkan sebagai variabel kategori
+                (misalnya: baik dan tidak baik), sehingga metode
+                <strong>Regresi Logistik</strong> digunakan untuk
+                menguji hubungan antar variabel serta
+                memprediksi peluang prestasi akademik mahasiswa.
             </p>
         </div>
     """, unsafe_allow_html=True)
@@ -78,11 +83,11 @@ def show_home():
         st.markdown("""
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
-                <h3 class="feature-title">Analisis Hubungan</h3>
+                <h3 class="feature-title">Analisis Data</h3>
                 <p class="feature-desc">
-                    Menganalisis hubungan antara durasi media sosial,
-                    durasi tidur, dan karakteristik mahasiswa
-                    terhadap prestasi akademik.
+                    Menganalisis hubungan antara penggunaan media sosial,
+                    durasi tidur, dan variabel pendukung lainnya
+                    terhadap prestasi akademik mahasiswa.
                 </p>
             </div>
         """, unsafe_allow_html=True)
@@ -91,10 +96,10 @@ def show_home():
         st.markdown("""
             <div class="feature-card">
                 <div class="feature-icon">📈</div>
-                <h3 class="feature-title">Pendekatan Statistik</h3>
+                <h3 class="feature-title">Regresi Logistik</h3>
                 <p class="feature-desc">
-                    Menggunakan regresi logistik untuk menguji
-                    signifikansi dan arah pengaruh setiap variabel.
+                    Menguji signifikansi dan arah pengaruh variabel
+                    independen terhadap peluang prestasi akademik.
                 </p>
             </div>
         """, unsafe_allow_html=True)
@@ -103,10 +108,11 @@ def show_home():
         st.markdown("""
             <div class="feature-card">
                 <div class="feature-icon">🎯</div>
-                <h3 class="feature-title">Prediksi Akademik</h3>
+                <h3 class="feature-title">Prediksi Peluang</h3>
                 <p class="feature-desc">
-                    Memprediksi peluang prestasi akademik mahasiswa
-                    berdasarkan kebiasaan dan karakteristiknya.
+                    Memprediksi probabilitas mahasiswa memiliki
+                    prestasi akademik yang baik berdasarkan
+                    kebiasaan media sosial dan tidur.
                 </p>
             </div>
         """, unsafe_allow_html=True)
@@ -114,7 +120,7 @@ def show_home():
     st.markdown("<br><br>", unsafe_allow_html=True)
 
     # =====================================================
-    # 5. ALUR PENGGUNAAN
+    # 5. ALUR PENGGUNAAN APLIKASI
     # =====================================================
     st.markdown(
         '<h2 class="section-title" style="text-align: center; color: #2c3e50;">🧭 Alur Penggunaan Aplikasi</h2>',
@@ -123,19 +129,22 @@ def show_home():
 
     st.markdown("""
     1. **Upload Dataset**  
-       Mengunggah data survei mahasiswa dalam format CSV.
+       Mengunggah dataset survei mahasiswa dalam format CSV.
 
     2. **Preprocessing Data**  
-       Membersihkan data dari duplikasi dan nilai kosong.
+       Membersihkan data, mengubah variabel kategori menjadi numerik,
+       serta menyiapkan data untuk analisis.
 
     3. **Analisis Data**  
-       Menganalisis hubungan antar variabel menggunakan tabel proporsi dan korelasi.
+       Menyajikan analisis deskriptif, proporsi, dan korelasi antar variabel.
 
-    4. **Visualisasi & Modeling**  
-       Melatih model regresi logistik dan mengevaluasi performanya.
+    4. **Model Regresi Logistik**  
+       Membangun model regresi logistik untuk menguji pengaruh variabel
+       dan memprediksi peluang prestasi akademik.
 
-    5. **Prediksi Prestasi Akademik**  
-       Menghasilkan probabilitas prestasi akademik mahasiswa.
+    5. **Visualisasi Hasil**  
+       Menampilkan koefisien regresi, evaluasi model,
+       serta interpretasi hasil analisis.
     """)
 
     st.markdown("<br>")
@@ -146,7 +155,7 @@ def show_home():
     # =====================================================
     st.markdown("""
         <div style="text-align: center; color: #7f8c8d; font-size: 0.9em; padding: 10px 0;">
-            © 2025 | Analisis Pengaruh Media Sosial terhadap Prestasi Akademik Mahasiswa
+            © 2025 | Analisis Pengaruh Media Sosial dan Durasi Tidur terhadap Prestasi Akademik Mahasiswa
         </div>
     """, unsafe_allow_html=True)
 
