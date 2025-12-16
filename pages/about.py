@@ -85,7 +85,7 @@ def show_about():
     team_members = [
         {"name": "Annisa Revalina Harahap", "nim": "2311521001", "image": "images/annisa.jpeg"},
         {"name": "Dinda Arfitri", "nim": "2311521002", "image": "images/dinda.jpeg"},
-        {"name": "Velisa Dwi Sonia", "nim": "231152203903", "image": "images/velisa.jpeg"},
+        {"name": "Velisa Dwi Sonia", "nim": "2311522039", "image": "images/velisa.jpeg"},
     ]
 
     cols = st.columns(len(team_members))
